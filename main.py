@@ -1,10 +1,3 @@
-
-# coding: utf-8
-
-# In[ ]:
-
-
-
 import cv2
 import math
 from skimage import color
@@ -243,7 +236,7 @@ def findNumber(slika) :
        
         if minSuma > suma :
             minSuma  =  suma
-            print('RAZLIKE: ',suma)
+            #print('RAZLIKE: ',suma)
             rez  =  mnist.target[i]
         i = i + 1
     return  rez
@@ -253,6 +246,8 @@ def findNumber(slika) :
     
 def main():
     
+    trezultati = [74, 84, 78, 102, 121, 83, 96, 75, 126, 100]
+
     brojevi = []
     frejm = 0
     
@@ -335,7 +330,7 @@ def main():
                         if br['prosao'] == False:
                             (x,y) = br['sredina']
                             br['prosao'] = True
-                            print (">Prosao je broj: " + format(int(br['vrednost'])))
+                            print ("+++Prosao je broj: " + format(int(br['vrednost'])))
    
                             dodajBroj(br['vrednost'])
       
@@ -343,6 +338,10 @@ def main():
       
    
     print ("Suma brojeva: " + format(int(suma)))
+    print ("Tacan rezultat: " + format(trezultati[int(unetVideo)]))
+    if trezultati[int(unetVideo)] < int(suma) :
+        print ("Procenat uspesnosti: " + format(trezultati[int(unetVideo)]*100/int(suma)))
+    else :
+        print ("Procenat uspesnosti: " + format(int(suma)*100/trezultati[int(unetVideo)]))
     video0.release()
 main()
-
